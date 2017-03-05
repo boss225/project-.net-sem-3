@@ -1,0 +1,77 @@
+<div class="cart-empty" role="alert" ng-show="ngCart.getTotalItems() === 0">
+    <p>Giỏ hàng của bạn đang trống</p>
+</div><br>
+
+<a href="/" class="w3-btn w3-red" ng-show="ngCart.getTotalItems() === 0">
+    MUA HÀNG
+</a>
+
+<div class="table-responsive" ng-show="ngCart.getTotalItems() > 0">
+
+    <table class="table table-bordered ngCart cart">
+
+        <thead>
+            <tr>
+                <th colspan="3">Sản phẩm đặt hàng</th>
+                <th>Số lượng</th>
+                <th>Giá tiền</th>
+                <th>Tổng cộng</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in ngCart.getCart().items track by $index">
+                <td id="center" style="width: 3%"><span ng-click="ngCart.removeItemById(item.getId())" class="fa fa-trash"></span></td>
+
+                <td style="text-align: center">
+                    <a href="/chi-tiet/{{item.getName()}}-{{item.getNameseo()}}">
+                        <img ng-src="{{item.getImg()}}" width="80px" alt="TV.SHOE">
+                    </a>
+                </td>
+                
+                <td id="center">
+                    <a href="/chi-tiet/{{item.getName()}}-{{item.getNameseo()}}">
+                        <div id="center1">
+                            {{ item.getName()}}- size:{{item.getImgname()}}
+                        </div>
+                    </a>
+                </td>
+
+                <td id="center">
+                    <span class="fa fa-minus" ng-class="{'disabled':item.getQuantity() == 1}"
+                          ng-click="item.setQuantity( - 1, true)"></span>
+                    &nbsp;&nbsp;{{ item.getQuantity() | number}}&nbsp;&nbsp;
+                    <span class="fa fa-plus" ng-click="item.setQuantity(1, true)"></span>
+                </td>
+                <td id="center">{{ item.getPrice() | currency:number:0}}</td>
+                <td id="center">{{ item.getTotal() | currency:number:0}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+
+<div class="row total" ng-show="ngCart.getTotalItems() !== 0">
+    <div class="col-md-8 col-sm-8 col-xs-7">
+        <a href="/" class="w3-btn w3-red">
+            MUA HÀNG TIẾP
+        </a>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-5">
+        <table class="table">
+            <tr>
+                <td>Tổng tiền :</td>
+                <td>{{ ngCart.totalCost() | currency:number:0}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row total" ng-show="ngCart.getTotalItems() !== 0">
+    <div style="text-align:right; padding:0 15px">
+        <a href="/thanh-toan" class="w3-btn w3-red">
+            <i class="fa fa-share" aria-hidden="true"> </i>&nbsp;
+             THANH TOÁN
+        </a>
+    </div>
+</div>
+
+

@@ -1,0 +1,40 @@
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="inner">
+                <ul>
+                    <li class="home"> <a href="/">Trang chủ</a></li>
+
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <li><span class="brn">Chính sách cửa hàng</span></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container privacy">
+    <md-content>
+        <md-tabs md-stretch-tabs="always" md-selected="selectedIndex" md-dynamic-height md-border-bottom>
+            <md-tab label="{{regulations.Title}}">
+                <md-content class="md-padding">
+                    <div class="ngloading" ng-show="loading"><img src="../images/loading.gif"  alt="TV.SHOE"/></div>
+                    <p style="padding: 10px" ng-bind-html="regulations.Text"></p>
+                </md-content>
+            </md-tab>
+            <md-tab label="{{guarantee.Title}}">
+                <md-content class="md-padding">
+                    <div class="ngloading" ng-show="loading"><img src="../images/loading.gif"  alt="TV.SHOE"/></div>
+                    <p style="padding: 10px" ng-bind-html="guarantee.Text"></p>
+                </md-content>
+            </md-tab>
+            <md-tab label="{{delivery.Title}}">
+                <md-content class="md-padding">
+                    <div class="ngloading" ng-show="loading"><img src="../images/loading.gif"  alt="TV.SHOE"/></div>
+                    <p style="padding: 10px" ng-bind-html="delivery.Text"></p>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+
+</div>

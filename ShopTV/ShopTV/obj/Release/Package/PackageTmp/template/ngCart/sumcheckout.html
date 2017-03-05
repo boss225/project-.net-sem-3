@@ -1,0 +1,32 @@
+<div class="checkoder">   
+    <table class="ngCart cart ">
+        <tr ng-repeat="item in ngCart.getCart().items track by $index">
+            <td>
+                <a href="/chi-tiet/{{item.getName()}}-{{item.getNameseo()}}">
+                    <img ng-src="{{item.getImg()}}" class="img-responsive" alt="TVShoes">
+
+                    <div>
+                        <p>{{item.getName()}}- size:{{item.getImgname()}}</p>
+                        <small>Số lượng: {{item.getQuantity() | number}}</small>
+                    </div>
+                </a>
+            </td>
+            <td style="color: #E53935; text-align: center">{{item.getTotal() | currency:number:0}}</td>
+            <td><span style="margin-left: 10px" ng-click="ngCart.removeItemById(item.getId())" class="fa fa-times"></span></td>
+        </tr>
+    </table>
+    <div style="text-align:right">
+        <h5><strong>
+                Tổng số lượng: {{ ngCart.getTotalItems()}}
+                <ng-pluralize count="ngCart.getTotalItems()" when="{1: 'Sản phẩm', 'other':'Sản phẩm'}"></ng-pluralize>
+            </strong>
+        </h5>
+        <h5><strong>Tổng tiền: {{ngCart.totalCost() | currency:number:0}}</strong></h5>
+        <br>
+        <div>
+            <button type="submit" class="btn btn-danger waves-effect waves-light" ng-if="ngCart.getTotalItems() !== 0"><span class="fa fa-check"></span> XÁC NHẬN</button>
+            <a href="/" class="btn btn-warning waves-effect waves-light" ng-if="ngCart.getTotalItems() === 0">TIẾP TỤC MUA HÀNG</a>
+        </div>
+
+    </div>
+</div>

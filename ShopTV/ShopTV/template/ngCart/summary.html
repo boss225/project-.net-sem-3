@@ -1,0 +1,33 @@
+<div class="shoppingcart dropdown">   
+    <a class="num-products dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-shopping-cart"> </i> 
+        <ng-pluralize count="ngCart.getTotalItems()" when="{1: 'Giỏ hàng', 'other':'Giỏ hàng'}"></ng-pluralize>
+        : {{ ngCart.getTotalItems()}}
+    </a>
+
+    <ul class="dropdown-menu" ng-class="ngCart.getTotalItems() !== 0 ? 'drm' : 'drmenu'">
+        <table class="ngCart cart">
+            <tr ng-repeat="item in ngCart.getCart().items track by $index">             
+                <td>
+                    <a href="/chi-tiet/{{item.getName()}}-{{item.getNameseo()}}">
+                        <img ng-src="{{item.getImg()}}" class="img-responsive" alt="TVShoes">
+
+                        <div>
+                            <p>{{item.getName()}}- size:{{item.getImgname()}}</p>
+                            <small>Số lượng: {{item.getQuantity() | number}}</small>                      
+                        </div>
+                    </a>
+                </td>
+                <td style="color: #E53935; text-align: center">{{item.getTotal() | currency:number:0}}</td>
+                <td><span style="margin-left: 10px" ng-click="ngCart.removeItemById(item.getId())" class="fa fa-times"></span></td>
+            </tr>
+        </table>
+        <div style="text-align:right">
+            <h5><strong>Tổng tiền: {{ngCart.totalCost() | currency:number:0}}</strong></h5>
+            <div>
+                <a href="/thanh-toan" class="w3-btn w3-red" ng-if="ngCart.getTotalItems() !== 0">Thanh toán</a>
+                <a href="/gio-hang" class="w3-btn w3-red">Giỏ hàng</a>
+            </div>
+        </div>
+    </ul>
+</div>

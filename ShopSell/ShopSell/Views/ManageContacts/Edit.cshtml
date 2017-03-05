@@ -1,0 +1,85 @@
+﻿@model ShopSell.Models.Contact
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<section class="panel">
+    <header class="panel-heading">
+        Chỉnh sửa thông tin liên hệ
+    </header>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameCompany, htmlAttributes: new { @class = "control-label col-lg-2 col-sm-2" })
+                    <div class="col-lg-10">
+                        @Html.EditorFor(model => model.NameCompany, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NameCompany, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-lg-2 col-sm-2" })
+                    <div class="col-lg-10">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-lg-2 col-sm-2" })
+                    <div class="col-lg-10">
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-lg-2 col-sm-2" })
+                    <div class="col-lg-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AddressWeb, htmlAttributes: new { @class = "control-label col-lg-2 col-sm-2" })
+                    <div class="col-lg-10">
+                        @Html.EditorFor(model => model.AddressWeb, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AddressWeb, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AddressSocial, htmlAttributes: new { @class = "control-label col-lg-2 col-sm-2" })
+                    <div class="col-lg-10">
+                        @Html.EditorFor(model => model.AddressSocial, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AddressSocial, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <input type="submit" value="LƯU" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="panel-heading">
+        @Html.ActionLink("Quay lại", "Index", null, htmlAttributes: new { @class = "btn btn-info" })
+    </div>
+
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

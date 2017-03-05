@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ShopSell.Models.ProductImage>
+@{
+    ViewBag.Title = "UploadDetailsImages";
+}
+
+<section class="panel">
+    <header class="panel-heading">
+        Tải ảnh chi tiết sản phẩm 
+    </header>
+    <div class="panel-body">
+        @using (Html.BeginForm("UploadDetailsImages", "ManageProducts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-inline">
+                <!-- File Upload -->
+                <div class="form-group">
+
+                    <input type="file" class="form-control" name="file" />
+
+                    <input type="submit" value="Upload" class="btn btn-primary" />
+
+                </div>
+            </div>
+
+        }
+        <hr />
+        <table>
+            @foreach (var image in Model)
+            {
+                <tr>
+                    <td style="padding-right:20px">
+                        @using (Html.BeginForm("DeleteProductImage", "ManageProducts"))
+                        {
+                            @*@Html.TextBox("DeleteId", image.Id)*@
+                            @Html.Hidden("DeleteId", image.Id)
+                            <button type="submit" class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                        }
+                    </td>
+                    <td>
+                        <img src="@Url.Content(image.ImageUrl)" style="width: 200px" class="img-thumbnail" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="panel-heading">
+        @Html.ActionLink("Quay lại", "Index", null, htmlAttributes: new { @class = "btn btn-info" })
+    </div>
+
+</section>

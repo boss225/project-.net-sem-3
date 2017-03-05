@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Upload";
+}
+
+<section class="panel">
+    <header class="panel-heading">
+        Ảnh đại diện
+    </header>
+    <div class="panel-body">
+        @using (Html.BeginForm("UploadImage", "ManageUserComments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-inline">
+                <!-- File Upload -->
+                <div class="form-group">
+
+                    <input type="file" class="form-control" name="file" />
+
+                    <input type="submit" value="Upload" class="btn btn-primary" />
+
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="panel-heading">
+        @Html.ActionLink("Quay lại", "Index", null, htmlAttributes: new { @class = "btn btn-info" })
+    </div>
+
+</section>

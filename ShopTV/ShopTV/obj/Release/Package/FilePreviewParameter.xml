@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="teamtv" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\PC\\Documents\\Visual\ Studio\ 2015\\Projects\\ShopTV\\ShopTV\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\PC\\Documents\\Visual\ Studio\ 2015\\Projects\\ShopTV\\ShopTV\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+</parameters>

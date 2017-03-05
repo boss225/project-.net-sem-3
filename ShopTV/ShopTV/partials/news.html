@@ -1,0 +1,42 @@
+﻿<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="inner">
+                <ul>
+                    <li class="home"> <a href="/">Trang chủ</a></li>
+
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <li><span class="brn">Tin tức - Blog</span></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-container col2-left-layout">
+    <div class="container">
+        <header class="page-header">
+            <h2>Tin tức</h2>
+        </header>
+
+        <div class="ngloading" ng-show="loading"><img src="../images/loading.gif" alt="TV.SHOE" /></div>
+        <div class="row news" ng-repeat="item in news | orderBy:Id:true">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <a href="/tin-tuc-blog/{{item.Id}}"><img ng-src="{{urlImage}}{{item.ImageUrl | limitTo:1000:2}}" width="100%"></a>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <h2><a href="/tin-tuc-blog/{{item.Id}}">{{item.Title}}</a></h2>
+                <div class="news_post_loop_info">
+                    <p class="cl_old">
+                        <span><i class="fa fa-user" aria-hidden="true"></i> {{item.Source}}</span> <span><i class="fa fa-calendar" aria-hidden="true"></i> {{item.CreatedDate | date:shortDate}}</span>
+                    </p>
+                </div>
+                <div>{{newslimit(item.Description) | limitTo:300}}{{newslimit(item.Description).length > 300 ? '....' : ''}}</div>
+                <div class="news_more">
+                    <a class="btn_viewmore" href="/tin-tuc-blog/{{item.Id}}">Đọc thêm <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>      
+    </div>
+</div>
+<br /><br />

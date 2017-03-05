@@ -1,0 +1,32 @@
+﻿<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="inner">
+                <ul>
+                    <li class="home"> <a href="/">Trang chủ</a></li>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <li class="home">
+                        <a href="/tin-tuc-blog">
+                            Tin tức - Blog
+                        </a>
+                    </li>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <li><span class="brn">{{newsdetail.Title}}</span></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-container col2-left-layout">
+    <div class="container detailnews">
+        <img ng-src="{{urlImage}}{{newsdetail.ImageUrl | limitTo:1000:2}}" width="100%">
+        <h2>{{newsdetail.Title}}</h2>
+        <div class="news_post_loop_info">
+            <p class="cl_old">
+                <span><i class="fa fa-user" aria-hidden="true"></i> {{newsdetail.Source}}</span> <span><i class="fa fa-calendar" aria-hidden="true"></i> {{newsdetail.CreatedDate | date:shortDate}}</span>
+            </p>
+        </div>
+        <div class="dtdnews" ng-bind-html="newsdetail.Description"></div>
+    </div>
+</div>

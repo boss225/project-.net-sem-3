@@ -1,0 +1,108 @@
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="inner">
+                <ul>
+                    <li class="home"> <a href="/">Trang chủ</a></li>
+
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <li><span class="brn">{{namecatalog}}</span></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <aside class="col-lg-3 col-md-3 col-sm-4 hidden-xs menu-left">
+        <div class="product_list block">
+            <div class="block-title">
+                <h5><a><i class="fa fa-bars" aria-hidden="true"></i>Danh mục sản phẩm</a></h5>
+            </div>
+            <div class="block-content">
+                <li class="level0 parent "><a href="/tat-ca-san-pham" ng-click="changename('Tất cả sản phẩm')"><i class="fa fa-caret-right" aria-hidden="true"></i><span>Tất cả sản phẩm</span></a></li>
+                <li class="level0 parent drop-menu " ng-repeat="lv1 in lv1category">
+                    <a ng-hide="lv1.SortOrder == '0'" href='/danh-muc/{{lv1.Name}}-{{lv1.Id}}.1' ng-click="changename(lv1.Name)">
+                        <i class="fa fa-caret-right" aria-hidden="true"></i><span>{{lv1.Name}}</span><i ng-if="lv1.SortOrder == '0'" class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+                    <a ng-show="lv1.SortOrder == '0'">
+                        <i class="fa fa-caret-right" aria-hidden="true"></i><span>{{lv1.Name}}</span><i ng-if="lv1.SortOrder == '0'" class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+                    <ul class="level1" ng-if="lv1.SortOrder == '0'">
+                        <li class="level1" ng-repeat="lv2 in lv2category" ng-if="lv1.Id === lv2.ParentId">
+                            <a href='/danh-muc/{{lv2.Name}}-{{lv2.Id}}.2' ng-click="changename(lv2.Name)"><span>{{lv2.Name}}</span></a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+
+        <div class="best_product block">
+            <div class="block-title">
+                <h5>Sản phẩm HOT</h5>
+            </div>
+            <div class="ngloading" ng-show="loading"><img src="../images/loading.gif" alt="TV.SHOE" /></div>
+            <div class="slideshowprobox">
+                <ul class="menu">
+                    <li ng-repeat="item in hotProds| orderBy:'random'|limitTo:4">
+                        <div class="row item">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 item-img">
+                                <a href="/chi-tiet/{{item.Name}}-{{item.Id}}"><img ng-src="{{urlImage}}{{item.ImageUrl | limitTo:1000:2}}" width="81" height="81" alt="TV.SHOE"></a>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 item-info">
+                                <h3 class="item-name"><a href="/chi-tiet/{{item.Name}}-{{item.Id}}">{{item.Name}}</a></h3>
+                                <p class="item-price cl_price fs16"><span>{{(1 - item.Discount / 100)*item.Price|currency:number:0}}</span></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </aside>
+
+    <article class="col-lg-9 col-md-9 col-sm-8 col-xs-12 new_products">
+        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 products-block">
+            <div class="row">
+                <h2 class="navbar-left"><a>{{namecatalog}}</a></h2>
+                <form name="myForm" class="navbar-right">
+                    <label for="mySelect">Sắp xếp theo : </label>
+                    <select name="mySelect" id="mySelect"
+                            ng-options="option.name for option in data.availableOptions track by option.name"
+                            ng-model="data.selectedOption"></select>
+                </form>
+            </div>
+
+            <div class="row list-prods">
+                <div class="ngloading" ng-show="loading"><img src="../images/loading.gif" alt="TV.SHOE" /></div>
+                <div class="col-md-3 col-sm-6 col-xs-6 item" dir-paginate="item in deltailcato | orderBy:data.selectedOption.arrange:data.selectedOption.boolean | itemsPerPage: pageSize" current-page="currentPage">
+                    <div class="prods-1">
+                        <span ng-show="item.Discount !== 0 " class="product-item-sale">{{item.Discount}} %</span>
+                        <span ng-hide="item.Status == 'ACTIVE'" class="product-item-sale">Tạm hết hàng</span>
+                        <img ng-src="{{urlImage}}{{item.ImageUrl | limitTo:1000:2}}" class="img img-responsive">
+
+                        <a class="addtocart btn" ng-class="item.Status !== 'ACTIVE' ? 'disabled':''" ng-click="open('sm',item.Id)">Đặt hàng</a>
+                        <a href="/chi-tiet/{{item.Name}}-{{item.Id}}">Chi tiết</a>
+                    </div>
+                    <div class="prods-2">
+                        <h3>
+                            <a href="/chi-tiet/{{item.Name}}-{{item.Id}}">{{item.Name}}</a>
+                        </h3>
+                        <h5 ng-show="item.Price !== 0">
+                            {{(1 - item.Discount / 100)*item.Price|currency:number:0}}
+                            <span ng-if="item.Discount !== 0">{{item.Price|currency:number:0}}</span>
+                        </h5>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+        <br>
+        <div class="row text-center">
+            <dir-pagination-controls boundary-links="true" template-url="template/dirPagination.tpl.html"></dir-pagination-controls>
+        </div>
+    </article>
+</div>
+<br><br>

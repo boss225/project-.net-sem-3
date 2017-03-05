@@ -1,0 +1,31 @@
+﻿@model ShopSell.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<section class="panel">
+    <header class="panel-heading">
+        Xóa tài khoản @Model.Email ?
+    </header>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                @Html.ActionLink("Quay lại", "Index", null, htmlAttributes: new { @class = "btn btn-info" })
+            </div>
+        }
+    </div>
+</section>

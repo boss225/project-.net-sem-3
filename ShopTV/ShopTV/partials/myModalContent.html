@@ -1,0 +1,24 @@
+﻿<div class="modal-header">
+    <button type="button" class="close"><span aria-hidden="true" ng-click="cancel()">&times;</span></button>
+    <h6 class="modal-title" id="modal-title"><strong>{{modeladdcart.Name}}</strong></h6>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="ngloading" ng-show="loading"><img src="../images/loading.gif" alt="TV.SHOE" /></div>
+    <div class="row size" ng-if="modeladdcart.Size !== null">
+        <div class="col-xs-5"><strong>Kích thước :</strong></div>
+        <div class="col-xs-7 btn-group" role="group">
+            <button class="btn btn-default dropdown-toggle" ng-model="size" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:4px">
+                {{size}}
+            </button>
+            <ul class="dropdown-menu">
+                <li ng-repeat="sf in sizeformat" ng-click="changesize(sf.size)">
+                    <a>{{sf.size}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--Note : phần này giải thích một chút là chưa chỉnh trong ngCart.js nên 'id' là size+id để cùng id nhưng khác size sẽ được thêm vào còn 'nameseo' là id ,'imgname' là size -->
+    <ngcart-addtocart id="{{size}}{{modeladdcart.Id}}" name="{{modeladdcart.Name}}" nameseo="{{modeladdcart.Id}}" price="{{(1 - modeladdcart.Discount / 100) * modeladdcart.Price}}" seles="{{modeladdcart.Discount}}" quantity="1" img="https://localhost:44374/{{modeladdcart.ImageUrl | limitTo:1000:2}}" imgname="{{size}}" data="modeladdcart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Đặt hàng</ngcart-addtocart>
+</div>
+<br />

@@ -1,0 +1,64 @@
+﻿@model ShopSell.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<section class="panel">
+    <header class="panel-heading">
+        Tạo mới tài khoản
+    </header>
+    <div class="panel-body">
+        @using (Html.BeginForm("Create", "ManageUsers", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-lg-2 col-sm-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-lg-2 col-sm-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-lg-2 col-sm-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 col-sm-2 control-label">
+                    Select User Role
+                </label>
+                <div class="col-lg-10">
+                    @foreach (var item in (SelectList)ViewBag.RoleId)
+                    {
+                        <input type="checkbox" name="SelectedRoles" value="@item.Value" class="checkbox-inline" />
+                        @Html.Label(item.Value, new { @class = "control-label" })
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <input type="submit" value="LƯU" class="btn btn-danger" />
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="panel-heading">
+        @Html.ActionLink("Quay lại", "Index", null, htmlAttributes: new { @class = "btn btn-info" })
+    </div>
+
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

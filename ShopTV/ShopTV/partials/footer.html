@@ -1,0 +1,30 @@
+<div ng-controller="footerCtrl" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer">
+    <div class="container">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+            <h5>Thông tin công ty</h5>
+            <li><span class="fa fa-home"> </span>Địa chỉ: {{contacts[0].Address}}</li>
+            <li><span class="fa fa-phone"> </span>Điện thoại: 0{{contacts[0].Phone}}</li>
+            <li><span class="fa fa-envelope"> </span>Email: {{contacts[0].Email}}</li>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-6">
+            <h5>Chính sách cửa hàng</h5>
+            <li><a href="/chinh-sach-cua-hang" ng-click="changeIndex(0)">Quy định - chính sách</a></li>
+            <li><a href="/chinh-sach-cua-hang" ng-click="changeIndex(1)">Quy định đổi trả - bảo hành</a></li>
+            <li><a href="/chinh-sach-cua-hang" ng-click="changeIndex(2)">Quy định giao hàng - lắp đặt</a></li>
+        </div>
+        <div class="col-lg-4 col-md-5 col-sm-12 hidden-xs">
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoftechaptech%2F%3Ffref%3Dts&tabs=timeline&width=370&height=200&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=108443366221407" width="350" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        </div>
+        <div class="col-lg-4 col-md-5 col-sm-12 visible-xs col-xs-12">
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoftechaptech%2F%3Ffref%3Dts&tabs=timeline&width=370&height=200&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=108443366221407" width="310" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        </div>
+    </div>
+</div>
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 copyright">
+    <div class="container">
+        <div class="row mg0">
+            <div>© TV.SHOE được cung cấp bởi TeamTV</div>
+        </div>
+    </div>
+</section>
+<button class="w3-btn w3-red w3-hover-deep-orange" href="javascript:;" onclick="page_scroll2top()"><i class="fa fa-angle-up"></i></button>

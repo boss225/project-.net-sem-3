@@ -1,0 +1,102 @@
+﻿@model ShopSell.Models.AboutShop
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<section class="panel">
+    <header class="panel-heading">
+        Chỉnh sửa phần @Model.Title
+    </header>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-lg-2 col-sm-2" })
+                    <div class="col-lg-10">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-lg-2 col-sm-2" })
+                    <div class="col-lg-10">
+                        @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <input type="submit" value="LƯU" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="panel-heading">
+        @Html.ActionLink("Quay lại", "Index", null, htmlAttributes: new { @class = "btn btn-info" })
+    </div>
+
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/summernote/summernote.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#Text').summernote({
+                onImageUpload: function (files, editor, welEditable) {
+                    // upload image to server and create imgNode...
+                    sendFile(files[0], editor, welEditable);
+                }
+            });
+        });
+
+        function sendFile(file, editor, welEditable) {
+            var data = new FormData();
+            data.append("file", file);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: '@Url.Action("SummernoteUploadImage", "ManageAboutShops")',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    console.log(data);
+                    editor.insertImage(welEditable, data.Url);
+                }
+            });
+        }
+
+        var edit = function () {
+            $('.click2edit').summernote({ focus: true });
+        };
+
+        var save = function () {
+            var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+            $('.click2edit').destroy();
+        };
+    </script>
+}
+
+<link href="~/Content/summernote/summernote.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/summernote/summernote-bs3.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+    .note-editor {
+        display: inline-block;
+    }
+</style>
+

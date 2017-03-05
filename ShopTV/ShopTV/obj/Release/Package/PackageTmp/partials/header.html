@@ -1,0 +1,133 @@
+<div ng-controller="headerCtrl">
+    <div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4 col-xs-8">           
+						<div class="welcome-msg">Chào mừng bạn đến với TV Shoe!</div>
+					</div>
+					<div class="social-sharing pull-right">
+						<a href="{{contacts[0].AddressSocial}}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="{{contacts[0].AddressSocial}}" target="_blank" class="hidden-xs"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="{{contacts[0].AddressSocial}}" target="_blank" class="hidden-xs"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                        <a href="https://www.youtube.com/watch?v=1izdWtcY1lE" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+    <div class="container header_main">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-7">
+                <div class="logo">
+                    <a title="TV Shoe" href="/">
+                        <img src="../images/logo.png" alt="TV Shoe"/>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 visible-xs col-xs-5 account-cart">
+                <ngcart-summary></ngcart-summary>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-5 hidden-xs search" ng-controller="searchprodCtrl">
+                <div class="search_form">
+                    <form method="post" ng-submit="submit()" autocomplete="off" class="search-form" role="search">
+                        <input ng-model="keysearchs" placeholder="Nhập từ tìm kiếm..." class="search_input" type="text" required>
+                        <input type="submit" value="Tìm kiếm" class="btnsearch">
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs account-cart">
+                <ngcart-summary></ngcart-summary>
+            </div>
+        </div>
+    </div>
+    <nav class="hidden-xs" media-query="min-width: 768px" sticky>
+        <div class="container">
+            <div class="row nav_menu">
+                <div class="nav-inner">
+                    <ul id="nav" class="hidden-xs">
+                        <li class="level0 parent active"><a href="/"><span><i class="fa fa-home" aria-hidden="true"> </i>  Trang chủ</span></a></li>
+                        <li class="level0 parent "><a href="/gioi-thieu"><span>Giới thiệu</span></a></li>
+                        <li class="level0 parent dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>Giày Nam</span></a>
+                            <ul class="dropdown-menu level1">
+                                <li class="level1" ng-repeat="lv2 in lv2category | filter : 'nam'">
+                                    <a href='/danh-muc/{{lv2.Name}}-{{lv2.Id}}.2' ng-click="changename(lv2.Name)">{{lv2.Name}}</a>
+                                </li>
+                                <li class="level1" ng-repeat="lv1 in lv1category | filter : 'tây'">
+                                    <a href='/danh-muc/{{lv1.Name}}-{{lv1.Id}}.1' ng-click="changename(lv1.Name)">{{lv1.Name}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="level0 parent dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>Giày Nữ</span></a>
+                            <ul class="dropdown-menu level1">
+                                <li class="level1" ng-repeat="lv2 in lv2category | filter : 'nữ'">
+                                    <a href='/danh-muc/{{lv2.Name}}-{{lv2.Id}}.2' ng-click="changename(lv2.Name)">{{lv2.Name}}</a>
+                                </li>
+                                <li class="level1" ng-repeat="lv1 in lv1category | filter : 'cao gót'">
+                                    <a href='/danh-muc/{{lv1.Name}}-{{lv1.Id}}.1' ng-click="changename(lv1.Name)">{{lv1.Name}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="level0 parent "><a href="/tin-tuc-blog"><span>Tin tức - Blog</span></a></li>                  
+                        <li class="level0 parent "><a href="/lien-he"><span>Liên hệ</span></a></li>                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-default visible-xs">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" ng-controller="searchprodCtrl">
+                    <div style="position:relative">
+                        <form method="post" ng-submit="submit()" autocomplete="off" class="search-form" role="search">
+                            <input ng-model="keysearchs" placeholder="Nhập từ tìm kiếm..." class="search_input" type="text" required>
+                            <input type="submit" value="Tìm kiếm" class="btnsearch">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/"><span><i class="fa fa-home" aria-hidden="true"> </i>  Trang chủ</span></a></li>
+                    <li><a href="/gioi-thieu"><span>Giới thiệu</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>Giày Nam</span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="lv2 in lv2category | filter : 'nam'">
+                                <a href='/danh-muc/{{lv2.Name}}-{{lv2.Id}}.2' ng-click="changename(lv2.Name)">{{lv2.Name}}</a>
+                            </li>
+                            <li ng-repeat="lv1 in lv1category | filter : 'tây'">
+                                <a href='/danh-muc/{{lv1.Name}}-{{lv1.Id}}.1' ng-click="changename(lv1.Name)">{{lv1.Name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>Giày Nữ</span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="lv2 in lv2category | filter : 'nữ'">
+                                <a href='/danh-muc/{{lv2.Name}}-{{lv2.Id}}.2' ng-click="changename(lv2.Name)">{{lv2.Name}}</a>
+                            </li>
+                            <li ng-repeat="lv1 in lv1category | filter : 'cao gót'">
+                                <a href='/danh-muc/{{lv1.Name}}-{{lv1.Id}}.1' ng-click="changename(lv1.Name)">{{lv1.Name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="/tin-tuc-blog"><span>Tin tức - Blog</span></a></li>
+                    <li><a href="/lien-he"><span>Liên hệ</span></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>

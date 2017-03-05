@@ -1,0 +1,63 @@
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="inner">
+                <ul>
+                    <li class="home"> <a href="/">Trang chủ</a></li>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <li><span class="brn">Thanh toán</span></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container paypal">
+    <div class="pay-form">
+        <form class="row" id="payform" ng-submit="orderProds()" autocomplete="off">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <b>1. THÔNG TIN NGƯỜI ĐẶT HÀNG</b><hr>
+                <div>
+                    <input type="text" ng-model="fullname" id="text" name="text" class="form-control" placeholder="Họ và tên *" required >                  
+                    <input type="email" ng-model="email" id="email" name="email" class="form-control" placeholder="Email *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>                  
+                    <input type="text" ng-model="phone" id="phone" name="phone" class="form-control" placeholder="Điện thoại *" required pattern="\d+">                  
+                    <input type="text" ng-model="address" id="address" name="address" class="form-control" placeholder="Địa chỉ *" required>                  
+                    <!--                    <input type="text" ng-model="city" id="input1" class="form-control" placeholder="Tỉnh/Thành phố *" required>                  
+                                        <input type="text" ng-model="township" id="input1" class="form-control" placeholder="Quận/Huyện *" required>                  -->
+                    <input type="checkbox" ng-model="radio" >Người nhận hàng giống thông tin người đặt hàng
+                    <div ng-hide="radio">
+                        <input type="text" ng-model="fullname1" id="text" name="text" class="form-control" placeholder="Họ và tên *" >                  
+                        <input type="email" ng-model="email1" id="email" name="email" class="form-control" placeholder="Email *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" >                  
+                        <input type="text" ng-model="phone1" id="phone" name="phone" class="form-control" placeholder="Điện thoại *" pattern="\d+" >                  
+                        <input type="text" ng-model="address1" id="address" name="address" class="form-control" placeholder="Địa chỉ *" >                  
+                        <!--                        <input type="text" ng-model="city1" id="input1" class="form-control" placeholder="Tỉnh/Thành phố *" >                  
+                                                <input type="text" ng-model="township1" id="input1" class="form-control" placeholder="Quận/Huyện *" > -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 hidden-sm col-xs-12">
+                <b>2. PHƯƠNG THỨC THANH TOÁN</b><hr>
+                <div>                    
+                    <input type="radio" ng-model="choose" value="1" ng-required="!choose"> Thanh toán khi giao hàng (COD)
+                    <!--<br><input type="radio" ng-model="choose" value="0" ng-required="!choose"> Trả trước : Chuyển khoản ngân hàng-->
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <b>3. THÔNG TIN ĐƠN HÀNG</b><hr>
+                <ngcart-sumcheckout></ngcart-sumcheckout>
+
+            </div>
+            <div class="visible-sm col-sm-6">
+                <br />
+                <b>2. PHƯƠNG THỨC THANH TOÁN</b><hr>
+                <div>
+                    <input type="radio" ng-model="choose" value="1" ng-required="!choose"> Thanh toán khi giao hàng (COD)
+                    <!--<br><input type="radio" ng-model="choose" value="0" ng-required="!choose"> Trả trước : Chuyển khoản ngân hàng-->
+                </div>
+            </div>
+        </form>  
+        
+    </div>
+    <br>
+</div>
+<br />
